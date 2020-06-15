@@ -1,11 +1,10 @@
 #!/bin/sh
 #
 # Generate condor queue metrics through node exporter file collector
-# For more info: https://github.com/ejr004/condor_textfile_collector
+# For more info: https://github.com/dsilos/grid_scripts/
 #
 # Add this line to your crontab (crontab -e)
 # */5 * * * * /scripts/condor_node_exporter.sh <ce>
-
 CE=$1
 # Condor queue metrics
 docker exec -i $CE.cat.cbpf.br condor_ce_q -tot \
@@ -44,3 +43,9 @@ docker exec -i $CE.cat.cbpf.br condor_ce_q -tot -constraint 'x509UserProxyVOName
 -format "# TYPE ncondor_queue_suspended_alice counter\ncondor_queue_suspended_alice{ce=\"$CE\"} %d" suspended \
  > /var/lib/node_exporter/textfile_collector/condor.queue_alice.prom.$$
 mv /var/lib/node_exporter/textfile_collector/condor.queue_alice.prom.$$ /var/lib/node_exporter/textfile_collector/condor.queue_alice.prom
+
+#Condor version value
+CONDOR_VERSION=`docker exec -i $CE.cat.cbpf.br condor_version | cut -d" " -f2 | head -1`
+echo -e "# TYPE condor_version\ncondor_version{ce=\"$CE\"} $CONDOR_VERSION" \
+> /var/lib/node_exporter/textfile_collector/condor.version.prom.$$
+mv /var/lib/node_exporter/textfile_collector/condor.version.prom.$$ /var/lib/node_exporter/textfile_collector/condor.version.prom
