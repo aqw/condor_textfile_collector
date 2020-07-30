@@ -12,12 +12,6 @@
   "__requires": [
     {
       "type": "panel",
-      "id": "alertlist",
-      "name": "Alert List",
-      "version": ""
-    },
-    {
-      "type": "panel",
       "id": "gauge",
       "name": "Gauge",
       "version": ""
@@ -39,6 +33,12 @@
       "id": "prometheus",
       "name": "Prometheus",
       "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "text",
+      "name": "Text",
+      "version": ""
     }
   ],
   "annotations": {
@@ -64,7 +64,7 @@
       "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 5,
-        "w": 4,
+        "w": 3,
         "x": 0,
         "y": 0
       },
@@ -118,8 +118,8 @@
       "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 5,
-        "w": 4,
-        "x": 4,
+        "w": 3,
+        "x": 3,
         "y": 0
       },
       "id": 14,
@@ -164,8 +164,8 @@
       "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 5,
-        "w": 4,
-        "x": 8,
+        "w": 3,
+        "x": 6,
         "y": 0
       },
       "id": 10,
@@ -214,8 +214,8 @@
       "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 5,
-        "w": 4,
-        "x": 12,
+        "w": 3,
+        "x": 9,
         "y": 0
       },
       "id": 11,
@@ -264,8 +264,8 @@
       "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 5,
-        "w": 4,
-        "x": 16,
+        "w": 3,
+        "x": 12,
         "y": 0
       },
       "id": 12,
@@ -314,8 +314,8 @@
       "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 5,
-        "w": 4,
-        "x": 20,
+        "w": 3,
+        "x": 15,
         "y": 0
       },
       "id": 13,
@@ -365,6 +365,78 @@
       "type": "gauge"
     },
     {
+      "cacheTimeout": null,
+      "datasource": "${DS_PROMETHEUS}",
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 18,
+        "y": 0
+      },
+      "id": 22,
+      "interval": "",
+      "links": [],
+      "options": {
+        "fieldOptions": {
+          "calcs": [
+            "last"
+          ],
+          "defaults": {
+            "mappings": [],
+            "max": 1640,
+            "min": 0,
+            "nullValueMode": "connected",
+            "thresholds": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#299c46",
+                "value": 1672
+              }
+            ],
+            "title": "",
+            "unit": "none"
+          },
+          "override": {},
+          "values": false
+        },
+        "orientation": "horizontal",
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "6.5.0",
+      "targets": [
+        {
+          "expr": "sum(condor_status_machines)",
+          "legendFormat": "Available Cores",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Total cores",
+      "type": "gauge"
+    },
+    {
+      "content": "| CE | WN |\n| ------ | ------ |\n|ce01| wn44|\n|ce02| wn32|\n|ce03| wn71, wn74, wn77, wn85, wn86|\n\n_Atualzado em: 2020/Jul/30_ \n",
+      "datasource": "${DS_PROMETHEUS}",
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 21,
+        "y": 0
+      },
+      "id": 28,
+      "mode": "markdown",
+      "options": {},
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Deactivated WorkerNodes",
+      "type": "text"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -380,6 +452,7 @@
       },
       "hiddenSeries": false,
       "id": 9,
+      "interval": "15m",
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -434,7 +507,7 @@
       "yaxes": [
         {
           "format": "short",
-          "label": null,
+          "label": "Running Jobs",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -470,6 +543,7 @@
       },
       "hiddenSeries": false,
       "id": 16,
+      "interval": "15m",
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -524,7 +598,7 @@
       "yaxes": [
         {
           "format": "short",
-          "label": null,
+          "label": "Running Jobs",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -545,83 +619,95 @@
       }
     },
     {
-      "dashboardFilter": "",
-      "dashboardTags": [],
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
-      "folderId": null,
+      "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 5,
-        "w": 5,
+        "w": 8,
         "x": 16,
         "y": 5
       },
-      "id": 24,
-      "limit": 10,
-      "nameFilter": "",
-      "onlyAlertsOnDashboard": false,
-      "options": {},
-      "show": "current",
-      "sortOrder": 1,
-      "stateFilter": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Panel Title",
-      "type": "alertlist"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
-      "gridPos": {
-        "h": 5,
-        "w": 3,
-        "x": 21,
-        "y": 5
+      "hiddenSeries": false,
+      "id": 26,
+      "interval": "15m",
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
       },
-      "id": 22,
-      "interval": "",
-      "links": [],
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
       "options": {
-        "fieldOptions": {
-          "calcs": [
-            "last"
-          ],
-          "defaults": {
-            "mappings": [],
-            "max": 1640,
-            "min": 0,
-            "nullValueMode": "connected",
-            "thresholds": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "#299c46",
-                "value": 1672
-              }
-            ],
-            "title": "",
-            "unit": "none"
-          },
-          "override": {},
-          "values": false
-        },
-        "orientation": "horizontal",
-        "showThresholdLabels": true,
-        "showThresholdMarkers": true
+        "dataLinks": []
       },
+      "percentage": false,
       "pluginVersion": "6.5.0",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(condor_status_machines)",
-          "legendFormat": "Available Cores",
+          "expr": "sum(condor_queue_running_dune)",
+          "instant": false,
+          "legendFormat": "running",
           "refId": "A"
         }
       ],
+      "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
-      "title": "Total cores",
-      "type": "gauge"
+      "title": "Dune Running Jobs",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": "Running Jobs",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "aliasColors": {},
@@ -640,6 +726,7 @@
       },
       "hiddenSeries": false,
       "id": 5,
+      "interval": "15m",
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -743,6 +830,7 @@
       },
       "hiddenSeries": false,
       "id": 6,
+      "interval": "15m",
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -808,7 +896,7 @@
       "yaxes": [
         {
           "format": "short",
-          "label": null,
+          "label": "Max Slots",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -844,10 +932,11 @@
       },
       "hiddenSeries": false,
       "id": 18,
+      "interval": "15m",
       "legend": {
         "alignAsTable": true,
         "avg": true,
-        "current": false,
+        "current": true,
         "max": false,
         "min": true,
         "show": true,
@@ -906,7 +995,7 @@
       "yaxes": [
         {
           "format": "short",
-          "label": null,
+          "label": "Max Slots",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -943,6 +1032,7 @@
       },
       "hiddenSeries": false,
       "id": 2,
+      "interval": "15m",
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -972,10 +1062,20 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "condor_queue_running{ce=\"ce01\"}",
+          "legendFormat": "Running",
+          "refId": "C"
+        },
+        {
           "expr": "condor_queue_held{ce=\"ce01\"}",
           "hide": false,
           "legendFormat": "Held ",
           "refId": "A"
+        },
+        {
+          "expr": "condor_queue_removed{ce=\"ce01\"}",
+          "legendFormat": "Removed",
+          "refId": "E"
         },
         {
           "expr": "condor_queue_idle{ce=\"ce01\"}",
@@ -983,19 +1083,9 @@
           "refId": "B"
         },
         {
-          "expr": "condor_queue_running{ce=\"ce01\"}",
-          "legendFormat": "Running",
-          "refId": "C"
-        },
-        {
           "expr": "condor_queue_suspended{ce=\"ce01\"}",
           "legendFormat": "Suspended",
           "refId": "D"
-        },
-        {
-          "expr": "condor_queue_removed{ce=\"ce01\"}",
-          "legendFormat": "Removed",
-          "refId": "E"
         }
       ],
       "thresholds": [],
@@ -1056,6 +1146,7 @@
       },
       "hiddenSeries": false,
       "id": 3,
+      "interval": "15m",
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -1085,9 +1176,19 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "condor_queue_running{ce=\"ce02\"}",
+          "legendFormat": "Running",
+          "refId": "C"
+        },
+        {
           "expr": "condor_queue_held{ce=\"ce02\"}",
           "legendFormat": "Held ",
           "refId": "A"
+        },
+        {
+          "expr": "condor_queue_removed{ce=\"ce02\"}",
+          "legendFormat": "Removed",
+          "refId": "E"
         },
         {
           "expr": "condor_queue_idle{ce=\"ce02\"}",
@@ -1095,19 +1196,9 @@
           "refId": "B"
         },
         {
-          "expr": "condor_queue_running{ce=\"ce02\"}",
-          "legendFormat": "Running",
-          "refId": "C"
-        },
-        {
           "expr": "condor_queue_suspended{ce=\"ce02\"}",
           "legendFormat": "Suspended",
           "refId": "D"
-        },
-        {
-          "expr": "condor_queue_removed{ce=\"ce02\"}",
-          "legendFormat": "Removed",
-          "refId": "E"
         }
       ],
       "thresholds": [],
@@ -1167,6 +1258,7 @@
       },
       "hiddenSeries": false,
       "id": 20,
+      "interval": "15m",
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -1193,9 +1285,19 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "condor_queue_running{ce=\"ce03\"}",
+          "legendFormat": "Running",
+          "refId": "C"
+        },
+        {
           "expr": "condor_queue_held{ce=\"ce03\"}",
           "legendFormat": "Held ",
           "refId": "A"
+        },
+        {
+          "expr": "condor_queue_removed{ce=\"ce03\"}",
+          "legendFormat": "Removed",
+          "refId": "E"
         },
         {
           "expr": "condor_queue_idle{ce=\"ce03\"}",
@@ -1203,19 +1305,9 @@
           "refId": "B"
         },
         {
-          "expr": "condor_queue_running{ce=\"ce03\"}",
-          "legendFormat": "Running",
-          "refId": "C"
-        },
-        {
           "expr": "condor_queue_suspended{ce=\"ce03\"}",
           "legendFormat": "Suspended",
           "refId": "D"
-        },
-        {
-          "expr": "condor_queue_removed{ce=\"ce03\"}",
-          "legendFormat": "Removed",
-          "refId": "E"
         }
       ],
       "thresholds": [],
@@ -1239,7 +1331,7 @@
       "yaxes": [
         {
           "format": "short",
-          "label": null,
+          "label": "Jobs",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -1260,7 +1352,7 @@
       }
     }
   ],
-  "refresh": "5m",
+  "refresh": "15m",
   "schemaVersion": 21,
   "style": "dark",
   "tags": [],
@@ -1288,5 +1380,5 @@
   "timezone": "",
   "title": "Condor General View",
   "uid": "_XK5tYPWk",
-  "version": 25
+  "version": 35
 }

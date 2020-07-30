@@ -74,6 +74,9 @@ condor_queue_suspended_alice{ce="ce01"} 0
 # HELP condor_queue_suspended_lhcb Metric read from /var/lib/node_exporter/textfile_collector/condor.queue_lhcb.prom
 # TYPE condor_queue_suspended_lhcb untyped
 condor_queue_suspended_lhcb{ce="ce01"} 0
+# HELP condor_queue_suspended_dune Metric read from /var/lib/node_exporter/textfile_collector/condor.queue_dune.prom
+# TYPE condor_queue_suspended_dune untyped
+condor_queue_suspended_dune{ce="ce01"} 0
 # HELP condor_status_claimed Metric read from /var/lib/node_exporter/textfile_collector/condor.status.prom
 # TYPE condor_status_claimed counter
 condor_status_claimed{ce="ce01"} 778
