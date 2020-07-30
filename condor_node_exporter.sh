@@ -44,8 +44,12 @@ docker exec -i $CE.cat.cbpf.br condor_ce_q -tot -constraint 'x509UserProxyVOName
  > /var/lib/node_exporter/textfile_collector/condor.queue_alice.prom.$$
 mv /var/lib/node_exporter/textfile_collector/condor.queue_alice.prom.$$ /var/lib/node_exporter/textfile_collector/condor.queue_alice.prom
 
-#Condor version value
-CONDOR_VERSION=`docker exec -i $CE.cat.cbpf.br condor_version | cut -d" " -f2 | head -1`
-echo -e "# TYPE condor_version\ncondor_version{ce=\"$CE\"} $CONDOR_VERSION" \
-> /var/lib/node_exporter/textfile_collector/condor.version.prom.$$
-mv /var/lib/node_exporter/textfile_collector/condor.version.prom.$$ /var/lib/node_exporter/textfile_collector/condor.version.prom
+#Condor queue VO dune
+docker exec -i $CE.cat.cbpf.br condor_ce_q -tot -constraint 'x509UserProxyVOName =?= "dune"' \
+-format "# TYPE ncondor_queue_removed_dune counter\ncondor_queue_removed_dune{ce=\"$CE\"} %d\n" removed \
+-format "# TYPE ncondor_queue_idle_dune counter\ncondor_queue_idle_dune{ce=\"$CE\"} %d\n" idle \
+-format "# TYPE ncondor_queue_running_dune counter\ncondor_queue_running_dune{ce=\"$CE\"} %d\n" running \
+-format "# TYPE ncondor_queue_held_dune counter\ncondor_queue_held_dune{ce=\"$CE\"} %d\n" held \
+-format "# TYPE ncondor_queue_suspended_dune counter\ncondor_queue_suspended_dune{ce=\"$CE\"} %d" suspended \
+ > /var/lib/node_exporter/textfile_collector/condor.queue_dune.prom.$$
+mv /var/lib/node_exporter/textfile_collector/condor.queue_dune.prom.$$ /var/lib/node_exporter/textfile_collector/condor.queue_dune.prom
